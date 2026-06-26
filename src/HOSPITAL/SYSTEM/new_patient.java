@@ -10,7 +10,7 @@ import java.util.Date;
 public class new_patient extends JFrame implements ActionListener {
 
     JComboBox comboBox;
-    JTextField textFieldnumber , textName , textfieldisease, textFieldDeposite ;
+    JTextField textFieldmonile ,textFieldnumber , textName , textfieldisease, textFieldDeposite ;
     JRadioButton r1,r2;
     Choice c1;
     JLabel date;
@@ -57,50 +57,63 @@ public class new_patient extends JFrame implements ActionListener {
 
         // ================= ID =================
         JLabel textlbl2 = new JLabel("ID:");
-        textlbl2.setBounds(80,70,150,25);
+        textlbl2.setBounds(80,50,150,25);
+
         textlbl2.setFont(f);
         textlbl2.setForeground(Color.BLACK);
         panel.add(textlbl2);
 
         comboBox = new JComboBox(new String[] {"Aadhar Card","Voter ID","Driving License"});
-        comboBox.setBounds(220,70,180,25);
+        comboBox.setBounds(220,50,180,25);
         panel.add(comboBox);
 
-        // ================= NUMBER =================
-        JLabel textlbl3 = new JLabel("Number:");
-        textlbl3.setBounds(80,110,150,25);
+        // ================= id NUMBER =================
+        JLabel textlbl3 = new JLabel("ID Number:");
+        textlbl3.setBounds(80,90,150,25);
         textlbl3.setFont(f);
         textlbl3.setForeground(Color.BLACK);
         panel.add(textlbl3);
 
         textFieldnumber = new JTextField();
-        textFieldnumber.setBounds(220,110,180,25);
+        textFieldnumber.setBounds(220,90,180,25);
         panel.add(textFieldnumber);
 
         // ================= NAME =================
         JLabel textlbl4 = new JLabel("Name:");
-        textlbl4.setBounds(80,150,150,25);
+        textlbl4.setBounds(80,130,150,25);
         textlbl4.setFont(f);
         textlbl4.setForeground(Color.BLACK);
         panel.add(textlbl4);
 
         textName = new JTextField();
-        textName.setBounds(220,150,180,25);
+        textName.setBounds(220,130,180,25);
         panel.add(textName);
+
+
+        // ================= mobile NUMBER =================
+        JLabel textlbl7 = new JLabel("Mobile Number:");
+        textlbl7.setBounds(80,170,150,25);
+        textlbl7.setFont(f);
+        textlbl7.setForeground(Color.BLACK);
+        panel.add(textlbl7);
+
+        textFieldmonile = new JTextField();
+        textFieldmonile.setBounds(220,170,180,25);
+        panel.add(textFieldmonile);
 
         // ================= GENDER =================
         JLabel gender = new JLabel("Gender:");
-        gender.setBounds(80,190,150,25);
+        gender.setBounds(80,210,150,25);
         gender.setFont(f);
         gender.setForeground(Color.BLACK);
         panel.add(gender);
 
         r1 = new JRadioButton("Male");
-        r1.setBounds(220,190,80,25);
+        r1.setBounds(220,210,80,25);
         panel.add(r1);
 
         r2 = new JRadioButton("Female");
-        r2.setBounds(310,190,100,25);
+        r2.setBounds(310,210,100,25);
         panel.add(r2);
 
         ButtonGroup bg1 = new ButtonGroup();
@@ -109,18 +122,18 @@ public class new_patient extends JFrame implements ActionListener {
 
         // ================= DISEASE =================
         JLabel disease= new JLabel("Disease:");
-        disease.setBounds(80,230,150,25);
+        disease.setBounds(80,250,150,25);
         disease.setFont(f);
         disease.setForeground(Color.BLACK);
         panel.add(disease);
 
         textfieldisease = new JTextField();
-        textfieldisease.setBounds(220,230,180,25);
+        textfieldisease.setBounds(220,250,180,25);
         panel.add(textfieldisease);
 
         // ================= ROOM =================
         JLabel room = new JLabel("Room:");
-        room.setBounds(80,270,100,20);
+        room.setBounds(80,290,120,25);
         room.setFont(f);
         room.setForeground(Color.BLACK);
         panel.add(room);
@@ -136,29 +149,29 @@ public class new_patient extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        c1.setBounds(220,270,180,25);
+        c1.setBounds(220,290,180,25);
         panel.add(c1);
 
         // ================= TIME =================
         JLabel jdate = new JLabel("Time:");
-        jdate.setBounds(80,310,150,25);
+        jdate.setBounds(80,330,150,25);
         jdate.setFont(f);
         jdate.setForeground(Color.BLACK);
         panel.add(jdate);
 
         date = new JLabel(new Date().toString());
-        date.setBounds(220,310,300,25);
+        date.setBounds(220,330,300,25);
         panel.add(date);
 
         // ================= DEPOSIT =================
         JLabel jdeposite = new JLabel("Deposit:");
-        jdeposite.setBounds(80,350,150,25);
+        jdeposite.setBounds(80,370,150,25);
         jdeposite.setFont(f);
         jdeposite.setForeground(Color.BLACK);
         panel.add(jdeposite);
 
         textFieldDeposite = new JTextField();
-        textFieldDeposite.setBounds(220,350,180,25);
+        textFieldDeposite.setBounds(220,370,180,25);
         panel.add(textFieldDeposite);
 
         // ================= BUTTONS =================
@@ -193,9 +206,9 @@ public class new_patient extends JFrame implements ActionListener {
             String radioBTN = r1.isSelected() ? "Male" : r2.isSelected() ? "Female" : "";
 
             try{
-                String q = "insert into Patient_information values ('"
-                        + comboBox.getSelectedItem()+"','"
+                String q = "insert into patient_information(name,mobile,IdNumber,Gender,Disease,Room,Time,Deposite) values ('"
                         + textName.getText()+"','"
+                        + textFieldmonile.getText()+"','"
                         + textFieldnumber.getText()+"','"
                         + radioBTN+"','"
                         + textfieldisease.getText()+"','"
