@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 
 public class All_patient_info extends JFrame {
 
+    JTextField txtPatientID;
+    JButton bReceipt, bBack;
+
     All_patient_info(){
 
         JPanel panel = new JPanel(){
@@ -56,13 +59,55 @@ public class All_patient_info extends JFrame {
         } catch (Exception e){
             e.printStackTrace();
         }
+        table.getSelectionModel().addListSelectionListener(e -> {
+
+            int row = table.getSelectedRow();
+
+            if(row != -1){
+
+                txtPatientID.setText(table.getValueAt(row,0).toString());
+
+            }
+
+        });
+
+        JLabel lblID = new JLabel("Patient ID :");
+        lblID.setBounds(180,370,90,30);
+        lblID.setFont(new Font("Tahoma",Font.BOLD,15));
+        panel.add(lblID);
+
+        txtPatientID = new JTextField();
+        txtPatientID.setBounds(270,370,120,30);
+        panel.add(txtPatientID);
+
+        bReceipt = new JButton("Receipt");
+        bReceipt.setBounds(420,370,120,30);
+        bReceipt.setBackground(new Color(0,102,204));
+        bReceipt.setForeground(Color.WHITE);
+        panel.add(bReceipt);
+        bReceipt.addActionListener(e -> {
+
+            if(txtPatientID.getText().equals("")){
+
+                JOptionPane.showMessageDialog(null,"Please Select Patient");
+
+            }else{
+
+                int id = Integer.parseInt(txtPatientID.getText());
+
+                new recipt(id);
+
+            }
+
+        });
 
         JButton b2 = new JButton("BACK");
-        b2.setBounds(350, 355, 140, 40);
+        b2.setBounds(570, 370, 120, 30);
         b2.setFont(new Font("Segoe UI", Font.BOLD, 14));
         b2.setBackground(new Color(229,62,62));
         b2.setForeground(Color.WHITE);
         b2.setFocusPainted(false);
+
 
         // ✅ EXIT ACTION
         // ✅ Action
